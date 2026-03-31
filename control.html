@@ -31,19 +31,20 @@ function animateChange(element) {
   
 const gameContainer = document.getElementById("games");
 
+gameContainer.innerHTML = "";
+
+const titles = [
+  "Set 1 (OBEN LINKS)",
+  "Set 2 (OBEN RECHTS)",
+  "Set 3 (UNTEN LINKS)",
+  "Set 4 (UNTEN RECHTS)"
+];
+
 for (let i = 1; i <= 4; i++) {
-
-  let title = "";
-
-  if (i === 1) title = "Set 1 (OBEN LINKS)";
-  if (i === 2) title = "Set 2 (OBEN RECHTS)";
-  if (i === 3) title = "Set 3 (UNTEN LINKS)";
-  if (i === 4) title = "Set 4 (UNTEN RECHTS)";
-
   gameContainer.innerHTML += `
     <div style="border:1px solid #ccc; padding:10px; margin:10px;">
       
-      <h3>${title}</h3>
+      <h3>${titles[i - 1]}</h3>
 
       <input id="p1-${i}" placeholder="Spieler 1"><br>
       <input id="p2-${i}" placeholder="Spieler 2"><br>
@@ -73,9 +74,6 @@ function reset(gameId) {
   s1.value = 0;
   s2.value = 0;
 
-  animateChange(s1);
-  animateChange(s2);
-
  const data = {
     player1: p1.value || "",
     player2: p2.value || "",
@@ -101,8 +99,6 @@ function update(gameId) {
 
   db.ref("games/game" + gameId).set(data);
 
-  animateChange(p1);
-  animateChange(p2);
   animateChange(s1);
   animateChange(s2);
 }
