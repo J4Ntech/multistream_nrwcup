@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Control Panel</h2>
+
+<input id="p1" placeholder="Spieler 1"><br>
+<input id="p2" placeholder="Spieler 2"><br>
+
+<input id="s1" type="number" placeholder="Score 1"><br>
+<input id="s2" type="number" placeholder="Score 2"><br>
+
+<button onclick="update()">Update</button>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "DEIN_KEY",
+  authDomain: "DEIN_DOMAIN",
+  databaseURL: "DEINE_DB_URL",
+  projectId: "DEIN_ID"
+};
+
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+function update() {
+  const data = {
+    player1: document.getElementById("p1").value,
+    player2: document.getElementById("p2").value,
+    score1: parseInt(document.getElementById("s1").value),
+    score2: parseInt(document.getElementById("s2").value)
+  };
+
+  db.ref("game").set(data);
+}
+</script>
+
+</body>
+</html>
