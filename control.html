@@ -37,10 +37,22 @@ for (let i = 1; i <= 4; i++) {
       <input id="s2-${i}" type="number" placeholder="Score 2"><br>
 
       <button onclick="update(${i})">Update Set ${i}</button>
+      <button onclick="reset(${i})">Reset Score</button>
     </div>
   `;
 }
 
+function reset(gameId) {
+  const data = {
+    player1: document.getElementById(`p1-${gameId}`).value || "",
+    player2: document.getElementById(`p2-${gameId}`).value || "",
+    score1: 0,
+    score2: 0
+  };
+
+  db.ref("games/game" + gameId).update(data);
+}
+  
 function update(gameId) {
   const s1 = Number(document.getElementById(`s1-${gameId}`).value);
   const s2 = Number(document.getElementById(`s2-${gameId}`).value);
