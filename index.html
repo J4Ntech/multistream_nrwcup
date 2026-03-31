@@ -30,15 +30,28 @@ const gameId = params.get("game") || "game1";
 
 const ref = db.ref("games/" + gameId);
 
+function animateOverlay(el) {
+  el.classList.remove("changed");
+  void el.offsetWidth; // force reflow (wichtig für restart der animation)
+  el.classList.add("changed");
+}
+  
 ref.on("value", (snapshot) => {
   const data = snapshot.val();
 
   if (!data) return;
 
-  document.getElementById("p1").innerText = data.player1;
-  document.getElementById("p2").innerText = data.player2;
-  document.getElementById("score").innerText =
-    data.score1 + " : " + data.score2;
+  const p1 = document.getElementById("p1");
+  const p2 = document.getElementById("p2");
+  const score = document.getElementById("score");
+
+  p1.innerText = data.player1;
+  p2.innerText = data.player2;
+  score.innerText = data.score1 + " : " + data.score2;
+
+  animateOverlay(p1);
+  animateOverlay(p2);
+  animateOverlay(score);
 });
 </script>
 
