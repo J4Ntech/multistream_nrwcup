@@ -43,6 +43,9 @@ for (let i = 1; i <= 4; i++) {
 }
 
 function reset(gameId) {
+  document.getElementById(`s1-${gameId}`).value = 0;
+  document.getElementById(`s2-${gameId}`).value = 0;
+
   const data = {
     player1: document.getElementById(`p1-${gameId}`).value || "",
     player2: document.getElementById(`p2-${gameId}`).value || "",
@@ -50,7 +53,7 @@ function reset(gameId) {
     score2: 0
   };
 
-  db.ref("games/game" + gameId).update(data);
+  db.ref("games/game" + gameId).set(data);
 }
   
 function update(gameId) {
