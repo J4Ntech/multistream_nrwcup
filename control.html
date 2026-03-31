@@ -5,48 +5,59 @@
 </head>
 <body>
 
+  // Root game -> games Unterordner
 <h2>Control Panel</h2>
 
-<input id="p1" placeholder="Spieler 1"><br>
-<input id="p2" placeholder="Spieler 2"><br>
-
-<input id="s1" type="number" placeholder="Score 1"><br>
-<input id="s2" type="number" placeholder="Score 2"><br>
-
-<button onclick="update()">Update</button>
+<div id="games"></div>
 
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
 
 <script>
 const firebaseConfig = {
-  apiKey: "AIzaSyD_vGptJ_ha6Z5Nk2DxjOejCWw75xevq7o",
-  authDomain: "nrw-cup-multistream.firebaseapp.com",
-  databaseURL: "https://nrw-cup-multistream-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "nrw-cup-multistream"
+  apiKey: "...",
+  authDomain: "...",
+  databaseURL: "...",
+  projectId: "..."
 };
 
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-function update() {
-  console.log("UPDATE WURDE GEKLICKT");
 
-  const s1 = Number(document.getElementById("s1").value);
-  const s2 = Number(document.getElementById("s2").value);
+// Erzeugung von 4 verschiedenen UIs, um alle 4 Panel zu steuern
+const gameContainer = document.getElementById("games");
+
+for (let i = 1; i <= 4; i++) {
+  gameContainer.innerHTML += `
+    <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+      <h3>Game ${i}</h3>
+
+      <input id="p1-${i}" placeholder="Spieler 1"><br>
+      <input id="p2-${i}" placeholder="Spieler 2"><br>
+
+      <input id="s1-${i}" type="number" placeholder="Score 1"><br>
+      <input id="s2-${i}" type="number" placeholder="Score 2"><br>
+
+      <button onclick="update(${i})">Update Game ${i}</button>
+    </div>
+  `;
+}
+
+
+// Update Funktion, um 4 verschiedene Scoreboard zu aktualisieren
+function update(gameId) {
+  const s1 = Number(document.getElementById(`s1-${gameId}`).value);
+  const s2 = Number(document.getElementById(`s2-${gameId}`).value);
 
   const data = {
-    player1: document.getElementById("p1").value || "",
-    player2: document.getElementById("p2").value || "",
+    player1: document.getElementById(`p1-${gameId}`).value || "",
+    player2: document.getElementById(`p2-${gameId}`).value || "",
     score1: isNaN(s1) ? 0 : s1,
     score2: isNaN(s2) ? 0 : s2
   };
 
-  console.log("DATA:", data);
-
-  db.ref("game").set(data)
-    .then(() => console.log("SUCCESS"))
-    .catch(err => console.error("ERROR:", err));
+  db.ref("games/game" + gameId).set(data);
 }
 </script>
 
