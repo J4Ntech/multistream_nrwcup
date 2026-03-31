@@ -21,7 +21,7 @@ const firebaseConfig = {
   projectId: "nrw-cup-multistream"
 };
 
-const app = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 function animateChange(element) {
@@ -35,74 +35,70 @@ window.onload = function () {
   const gameContainer = document.getElementById("games");
 
   const titles = [
-    "Set 1 (OBEN LINKS)",
-    "Set 2 (OBEN RECHTS)",
-    "Set 3 (UNTEN LINKS)",
-    "Set 4 (UNTEN RECHTS)"
+    "Set 1 OBEN LINKS",
+    "Set 2 OBEN RECHTS",
+    "Set 3 UNTEN LINKS",
+    "Set 4 UNTEN RECHTS"
   ];
 
   gameContainer.innerHTML = "";
 
   for (let i = 1; i <= 4; i++) {
-    gameContainer.innerHTML += `
-      <div style="border:1px solid #ccc; padding:10px; margin:10px;">
-        
-        <h3>${titles[i - 1]}</h3>
 
-        <input id="p1-${i}" placeholder="Spieler 1"><br>
-        <input id="p2-${i}" placeholder="Spieler 2"><br>
+    const box = document.createElement("div");
+    box.style.border = "1px solid #ccc";
+    box.style.padding = "10px";
+    box.style.margin = "10px";
 
-        <input id="s1-${i}" type="number" placeholder="Score 1"><br>
-        <input id="s2-${i}" type="number" placeholder="Score 2"><br>
+    box.innerHTML = `
+      <h3>${titles[i - 1]}</h3>
 
-        <button onclick="update(${i})">Update Set ${i}</button>
-        <button onclick="reset(${i})">Reset Score</button>
-      </div>
+      <input id="p1-${i}" placeholder="Spieler 1"><br>
+      <input id="p2-${i}" placeholder="Spieler 2"><br>
+
+      <input id="s1-${i}" type="number" placeholder="Score 1"><br>
+      <input id="s2-${i}" type="number" placeholder="Score 2"><br>
+
+      <button onclick="update(${i})">Update Set ${i}</button>
+      <button onclick="reset(${i})">Reset Score</button>
     `;
-  }
 
+    gameContainer.appendChild(box);
+  }
 };
 
 function reset(gameId) {
   const confirmReset = confirm("Willst du den Score wirklich resetten?");
-
-  if (!confirmReset) {
-    return; // Abbruch
-  }
+  if (!confirmReset) return;
 
   const p1 = document.getElementById(`p1-${gameId}`);
   const p2 = document.getElementById(`p2-${gameId}`);
   const s1 = document.getElementById(`s1-${gameId}`);
   const s2 = document.getElementById(`s2-${gameId}`);
 
-
   s1.value = 0;
   s2.value = 0;
 
- const data = {
+  db.ref("games/game" + gameId).set({
     player1: p1.value || "",
     player2: p2.value || "",
     score1: 0,
     score2: 0
-  };
-
-  db.ref("games/game" + gameId).set(data);
+  });
 }
-  
+
 function update(gameId) {
   const p1 = document.getElementById(`p1-${gameId}`);
   const p2 = document.getElementById(`p2-${gameId}`);
   const s1 = document.getElementById(`s1-${gameId}`);
   const s2 = document.getElementById(`s2-${gameId}`);
 
-  const data = {
+  db.ref("games/game" + gameId).set({
     player1: p1.value || "",
     player2: p2.value || "",
     score1: Number(s1.value) || 0,
     score2: Number(s2.value) || 0
-  };
-
-  db.ref("games/game" + gameId).set(data);
+  });
 
   animateChange(s1);
   animateChange(s2);
