@@ -22,7 +22,7 @@ const firebaseConfig = {
   projectId: "nrw-cup-multistream"
 };
 
-const app = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 const params = new URLSearchParams(window.location.search);
@@ -35,10 +35,9 @@ function animateScore(el) {
   void el.offsetWidth;
   el.classList.add("changed");
 }
-  
+
 ref.on("value", (snapshot) => {
   const data = snapshot.val();
-
   if (!data) return;
 
   const p1 = document.getElementById("p1");
@@ -47,13 +46,13 @@ ref.on("value", (snapshot) => {
 
   p1.innerText = data.player1;
   p2.innerText = data.player2;
-  
-  score.innerText = data.score1 + " : " + data.score2;
-  animateScore(score);
 
-  animateOverlay(p1);
-  animateOverlay(p2);
-  animateOverlay(score);
+  const newScore = data.score1 + " : " + data.score2;
+
+  if (score.innerText !== newScore) {
+    score.innerText = newScore;
+    animateScore(score);
+  }
 });
 </script>
 
