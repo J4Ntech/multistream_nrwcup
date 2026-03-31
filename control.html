@@ -49,10 +49,17 @@ for (let i = 1; i <= 4; i++) {
 }
 
 function reset(gameId) {
+  const confirmReset = confirm("Willst du den Score wirklich resetten?");
+
+  if (!confirmReset) {
+    return; // Abbruch
+  }
+
   const p1 = document.getElementById(`p1-${gameId}`);
   const p2 = document.getElementById(`p2-${gameId}`);
   const s1 = document.getElementById(`s1-${gameId}`);
   const s2 = document.getElementById(`s2-${gameId}`);
+
 
   s1.value = 0;
   s2.value = 0;
@@ -60,7 +67,7 @@ function reset(gameId) {
   animateChange(s1);
   animateChange(s2);
 
-  const data = {
+ const data = {
     player1: p1.value || "",
     player2: p2.value || "",
     score1: 0,
