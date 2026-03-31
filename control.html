@@ -5,7 +5,6 @@
 </head>
 <body>
 
-  // Root game -> games Unterordner
 <h2>Control Panel</h2>
 
 <div id="games"></div>
@@ -24,8 +23,6 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-
-// Erzeugung von 4 verschiedenen UIs, um alle 4 Panel zu steuern
 const gameContainer = document.getElementById("games");
 
 for (let i = 1; i <= 4; i++) {
@@ -44,8 +41,6 @@ for (let i = 1; i <= 4; i++) {
   `;
 }
 
-
-// Update Funktion, um 4 verschiedene Scoreboard zu aktualisieren
 function update(gameId) {
   const s1 = Number(document.getElementById(`s1-${gameId}`).value);
   const s2 = Number(document.getElementById(`s2-${gameId}`).value);
