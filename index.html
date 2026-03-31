@@ -30,10 +30,13 @@ const ref = db.ref("game");
 ref.on("value", (snapshot) => {
   const data = snapshot.val();
 
-  document.getElementById("p1").innerText = data.player1;
-  document.getElementById("p2").innerText = data.player2;
+  if (!data) return;
+
+  document.getElementById("p1").innerText = data.player1 ?? "Spieler 1";
+  document.getElementById("p2").innerText = data.player2 ?? "Spieler 2";
   document.getElementById("score").innerText =
-    data.score1 + " : " + data.score2;
+    (data.score1 ?? 0) + " : " + (data.score2 ?? 0);
+});
 });
 </script>
 
