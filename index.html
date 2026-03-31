@@ -30,9 +30,9 @@ const gameId = params.get("game") || "game1";
 
 const ref = db.ref("games/" + gameId);
 
-function animateOverlay(el) {
+function animateScore(el) {
   el.classList.remove("changed");
-  void el.offsetWidth; // force reflow (wichtig für restart der animation)
+  void el.offsetWidth;
   el.classList.add("changed");
 }
   
@@ -47,7 +47,9 @@ ref.on("value", (snapshot) => {
 
   p1.innerText = data.player1;
   p2.innerText = data.player2;
+  
   score.innerText = data.score1 + " : " + data.score2;
+  animateScore(score);
 
   animateOverlay(p1);
   animateOverlay(p2);
