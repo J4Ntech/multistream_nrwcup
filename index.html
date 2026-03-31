@@ -28,15 +28,18 @@ const db = firebase.database();
 const ref = db.ref("game");
 
 ref.on("value", (snapshot) => {
+  console.log("Update angekommen:", snapshot.val());
+
   const data = snapshot.val();
 
   if (!data) return;
+
+  console.log("Daten verarbeitet:", data);
 
   document.getElementById("p1").innerText = data.player1 ?? "Spieler 1";
   document.getElementById("p2").innerText = data.player2 ?? "Spieler 2";
   document.getElementById("score").innerText =
     (data.score1 ?? 0) + " : " + (data.score2 ?? 0);
-});
 });
 </script>
 
