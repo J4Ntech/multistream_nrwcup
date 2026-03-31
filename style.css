@@ -1,6 +1,14 @@
 body {
   font-family: Arial;
   text-align: center;
+}
+
+body.control {
+  background: #111;
+  color: white;
+}
+
+body.overlay {
   background: transparent;
   color: white;
 }
