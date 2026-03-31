@@ -7,7 +7,6 @@
 <body>
 
 <h2>Control Panel</h2>
-<h3 style="color:red">TEST SET 1 OBEN LINKS</h3>
 
 <div id="games"></div>
 
@@ -31,7 +30,7 @@ function animateChange(element) {
   element.classList.add("changed");
 }
   
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function () {
 
   const gameContainer = document.getElementById("games");
 
