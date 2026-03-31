@@ -29,34 +29,38 @@ function animateChange(element) {
   element.classList.add("changed");
 }
   
-const gameContainer = document.getElementById("games");
+window.onload = function () {
 
-gameContainer.innerHTML = "";
+  const gameContainer = document.getElementById("games");
 
-const titles = [
-  "Set 1 (OBEN LINKS)",
-  "Set 2 (OBEN RECHTS)",
-  "Set 3 (UNTEN LINKS)",
-  "Set 4 (UNTEN RECHTS)"
-];
+  const titles = [
+    "Set 1 (OBEN LINKS)",
+    "Set 2 (OBEN RECHTS)",
+    "Set 3 (UNTEN LINKS)",
+    "Set 4 (UNTEN RECHTS)"
+  ];
 
-for (let i = 1; i <= 4; i++) {
-  gameContainer.innerHTML += `
-    <div style="border:1px solid #ccc; padding:10px; margin:10px;">
-      
-      <h3>${titles[i - 1]}</h3>
+  gameContainer.innerHTML = "";
 
-      <input id="p1-${i}" placeholder="Spieler 1"><br>
-      <input id="p2-${i}" placeholder="Spieler 2"><br>
+  for (let i = 1; i <= 4; i++) {
+    gameContainer.innerHTML += `
+      <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+        
+        <h3>${titles[i - 1]}</h3>
 
-      <input id="s1-${i}" type="number" placeholder="Score 1"><br>
-      <input id="s2-${i}" type="number" placeholder="Score 2"><br>
+        <input id="p1-${i}" placeholder="Spieler 1"><br>
+        <input id="p2-${i}" placeholder="Spieler 2"><br>
 
-      <button onclick="update(${i})">Update Set ${i}</button>
-      <button onclick="reset(${i})">Reset Score</button>
-    </div>
-  `;
-}
+        <input id="s1-${i}" type="number" placeholder="Score 1"><br>
+        <input id="s2-${i}" type="number" placeholder="Score 2"><br>
+
+        <button onclick="update(${i})">Update Set ${i}</button>
+        <button onclick="reset(${i})">Reset Score</button>
+      </div>
+    `;
+  }
+
+};
 
 function reset(gameId) {
   const confirmReset = confirm("Willst du den Score wirklich resetten?");
