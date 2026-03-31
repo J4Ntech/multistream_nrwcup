@@ -29,16 +29,16 @@ function animateChange(element) {
   void element.offsetWidth;
   element.classList.add("changed");
 }
-  
+
 document.addEventListener("DOMContentLoaded", function () {
 
   const gameContainer = document.getElementById("games");
 
   const titles = [
-    "Set 1 OBEN LINKS",
-    "Set 2 OBEN RECHTS",
-    "Set 3 UNTEN LINKS",
-    "Set 4 UNTEN RECHTS"
+    "Set 1 (OBEN LINKS)",
+    "Set 2 (OBEN RECHTS)",
+    "Set 3 (UNTEN LINKS)",
+    "Set 4 (UNTEN RECHTS)"
   ];
 
   gameContainer.innerHTML = "";
@@ -51,7 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
     box.style.margin = "10px";
 
     box.innerHTML = `
-      <h3>${titles[i - 1]}</h3>
+      <div style="font-weight:bold; margin-bottom:8px;">
+        ${titles[i - 1]}
+      </div>
 
       <input id="p1-${i}" placeholder="Spieler 1"><br>
       <input id="p2-${i}" placeholder="Spieler 2"><br>
@@ -66,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
     gameContainer.appendChild(box);
   }
 
-}); <!-- 🔥 WICHTIG: HIER WAR DER FEHLER BEHOBEN -->
+});
 
 function reset(gameId) {
   const confirmReset = confirm("Willst du den Score wirklich resetten?");
