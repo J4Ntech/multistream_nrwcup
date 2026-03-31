@@ -4,19 +4,34 @@ body {
 }
 
 body.control {
-  background: #111;
-  color: white;
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Inputs im Control (sonst oft weiß auf weiß Problem) */
+body.control input {
+  background: #f5f5f5;
+  color: #000;
+  border: 1px solid #ccc;
+}
+
+body.control button {
+  background: #e0e0e0;
+  color: #000;
+  border: 1px solid #aaa;
+  cursor: pointer;
 }
 
 body.overlay {
   background: transparent;
-  color: white;
+  color: #ffffff;
 }
 
 #overlay {
   font-size: 50px;
   background: rgba(0,0,0,0.5);
   padding: 20px;
+  color: white;
 }
 
 .changed {
