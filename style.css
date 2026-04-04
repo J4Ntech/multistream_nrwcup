@@ -46,19 +46,19 @@ body.overlay {
 }
 
 #p1 {
-  left: 100px;
-  top: 100px;
+  left: 650px;
+  top: 50px;
 }
 
 #score {
-  left: 900px;
-  top: 100px;
+  left: 750px;
+  top: 50px;
   font-size: 50px;
 }
 
 #p2 {
-  right: 100px;
-  top: 100px;
+  right: 650px;
+  top: 50px;
 }
 
 .changed {
