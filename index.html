@@ -51,6 +51,9 @@ ref.on("value", (snapshot) => {
  const score1 = document.getElementById("score1");
 const score2 = document.getElementById("score2");
 
+  p1.innerText = data.player1 || "";
+  p2.innerText = data.player2 || "";
+  
 if (score1.innerText != data.score1) {
   score1.innerText = data.score1;
   animateScore(score1);
