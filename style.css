@@ -58,13 +58,13 @@ body.overlay {
 }
 
 #score1 {
-  left: 900px;
+  left: 800px;
   top: 40px;
   font-size: 50px;
 }
 
 #score2 {
-  left: 900px;
+  left: 1300px;
   top: 40px;
   font-size: 50px;
 }
