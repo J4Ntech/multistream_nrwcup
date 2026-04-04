@@ -41,7 +41,7 @@ body.overlay {
   background-size: contain;
 }
 
-#p1, #p2, #score {
+#p1, #p2, #score1, #score2 {
   position: absolute;
   color: white;
   text-shadow: 0 0 6px rgba(0,0,0,0.8);
@@ -52,15 +52,21 @@ body.overlay {
   top: 50px;
 }
 
-#score {
-  left: 750px;
+#p2 {
+  right: 650px;
+  top: 50px;
+}
+
+#score1 {
+  left: 700px;
   top: 50px;
   font-size: 50px;
 }
 
-#p2 {
-  right: 650px;
+#score2 {
+  left: 1100px;
   top: 50px;
+  font-size: 50px;
 }
 
 .changed {
