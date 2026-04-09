@@ -49,7 +49,7 @@ body.overlay {
 
 #p1 {
   left: 615px;
-  top: 62px;
+  top: 50px;
   width: 320px;
   font-size: 50px;
 
@@ -61,7 +61,7 @@ body.overlay {
 
 #p2 {
   left: 1305px;
-  top: 62px;
+  top: 50px;
   width: 320px;
   font-size: 50px;
 
@@ -72,8 +72,8 @@ body.overlay {
 }
 
 #score1 {
-  left: 845px;
-  top: 37px;
+  left: 835px;
+  top: 30px;
   width: 70px;
   font-size: 50px;
 
@@ -83,8 +83,8 @@ body.overlay {
 }
 
 #score2 {
-  left: 1075px;
-  top: 37px;
+  left: 1085px;
+  top: 30px;
   width: 70px;
   font-size: 50px;
 
