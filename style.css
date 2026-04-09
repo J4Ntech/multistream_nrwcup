@@ -50,7 +50,7 @@ body.overlay {
   padding: 8px 12px;
 
   border-radius: 8px;
-  background: transparent;   /* 🔥 kein Hintergrund mehr */
+  background: transparent;
 
   color: white;
   text-align: left;
@@ -58,13 +58,13 @@ body.overlay {
 }
 
 #round {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
   line-height: 1.2;
 }
 
 #phase {
-  font-size: 18px;
+  font-size: 14px;
   opacity: 0.85;
   line-height: 1.2;
 }
