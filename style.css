@@ -51,7 +51,7 @@ body.overlay {
   left: 615px;
   top: 18px;
   width: 320px;
-  font-size: 50px;
+  font-size: 45px;
 
   transform: translateX(-50%);
   text-align: center;
@@ -63,7 +63,7 @@ body.overlay {
   left: 1305px;
   top: 18px;
   width: 320px;
-  font-size: 50px;
+  font-size: 45px;
 
   transform: translateX(-50%);
   text-align: center;
@@ -73,7 +73,7 @@ body.overlay {
 
 #score1 {
   left: 838px;
-  top: 18px;
+  top: 17px;
   width: 70px;
   font-size: 50px;
 
@@ -84,7 +84,7 @@ body.overlay {
 
 #score2 {
   left: 1082px;
-  top: 18px;
+  top: 17px;
   width: 70px;
   font-size: 50px;
 
