@@ -15,14 +15,10 @@
   <button onclick="login()">Login</button>
 </div>
 
-<!-- 🎮 APP -->
 <div id="app" style="display:none;">
-
   <h3>Logged in ✔</h3>
   <button onclick="logout()">Logout</button>
-
   <div id="games"></div>
-
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
@@ -42,7 +38,6 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 const auth = firebase.auth();
 
-
 function login() {
   const email = document.getElementById("email").value;
   const pw = document.getElementById("password").value;
@@ -55,8 +50,6 @@ function logout() {
   firebase.auth().signOut();
 }
 
-
-// 👀 AUTH STATE
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
     document.getElementById("loginBox").style.display = "none";
@@ -68,9 +61,7 @@ firebase.auth().onAuthStateChanged(user => {
   }
 });
 
-
 function loadUI() {
-
   const gameContainer = document.getElementById("games");
 
   const titles = [
@@ -83,7 +74,6 @@ function loadUI() {
   gameContainer.innerHTML = "";
 
   for (let i = 1; i <= 4; i++) {
-
     const box = document.createElement("div");
 
     box.style.border = "1px solid #444";
@@ -100,7 +90,10 @@ function loadUI() {
       <input id="p2-${i}" placeholder="Spieler 2"><br>
 
       <input id="s1-${i}" type="number" placeholder="Score 1"><br>
-      <input id="s2-${i}" type="number" placeholder="Score 2"><br>
+      <input id="s2-${i}" type="number" placeholder="Score 2"><br><br>
+
+      <input id="round-${i}" placeholder="Runde"><br>
+      <input id="phase-${i}" placeholder="Phase"><br><br>
 
       <button onclick="update(${i})">Update Set ${i}</button>
       <button onclick="reset(${i})">Reset Score</button>
@@ -110,21 +103,23 @@ function loadUI() {
   }
 }
 
-
 function update(gameId) {
   const p1 = document.getElementById(`p1-${gameId}`);
   const p2 = document.getElementById(`p2-${gameId}`);
   const s1 = document.getElementById(`s1-${gameId}`);
   const s2 = document.getElementById(`s2-${gameId}`);
+  const round = document.getElementById(`round-${gameId}`);
+  const phase = document.getElementById(`phase-${gameId}`);
 
   db.ref("games/game" + gameId).set({
     player1: p1.value || "",
     player2: p2.value || "",
     score1: Number(s1.value) || 0,
-    score2: Number(s2.value) || 0
+    score2: Number(s2.value) || 0,
+    round: round.value || "",
+    phase: phase.value || ""
   });
 }
-
 
 function reset(gameId) {
   const confirmReset = confirm("Willst du den Score wirklich resetten?");
@@ -134,17 +129,19 @@ function reset(gameId) {
   const p2 = document.getElementById(`p2-${gameId}`);
   const s1 = document.getElementById(`s1-${gameId}`);
   const s2 = document.getElementById(`s2-${gameId}`);
+  const round = document.getElementById(`round-${gameId}`);
+  const phase = document.getElementById(`phase-${gameId}`);
 
-  // Eingabefelder im Control Panel sofort sichtbar auf 0 setzen
   s1.value = 0;
   s2.value = 0;
 
-  // Spielernamen behalten
   db.ref("games/game" + gameId).set({
     player1: p1.value || "",
     player2: p2.value || "",
     score1: 0,
-    score2: 0
+    score2: 0,
+    round: round.value || "",
+    phase: phase.value || ""
   });
 }
 </script>
