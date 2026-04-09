@@ -48,43 +48,49 @@ body.overlay {
 }
 
 #p1 {
-  left: 720px;
-  top: 50px;
+  left: 615px;
+  top: 62px;
+  width: 320px;
   font-size: 50px;
 
   transform: translateX(-50%);
   text-align: center;
-  width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 #p2 {
-  left: 1200px;
-  top: 50px;
+  left: 1305px;
+  top: 62px;
+  width: 320px;
   font-size: 50px;
 
   transform: translateX(-50%);
   text-align: center;
-  width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 #score1 {
-  left: 880px;
+  left: 845px;
   top: 37px;
+  width: 70px;
   font-size: 50px;
 
   transform: translateX(-50%);
   text-align: center;
-  width: 100px;
+  font-variant-numeric: tabular-nums;
 }
 
 #score2 {
-  left: 1080px;
+  left: 1075px;
   top: 37px;
+  width: 70px;
   font-size: 50px;
 
   transform: translateX(-50%);
   text-align: center;
-  width: 100px;
+  font-variant-numeric: tabular-nums;
 }
 
 .changed {
