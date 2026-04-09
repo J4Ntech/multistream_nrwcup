@@ -48,27 +48,43 @@ body.overlay {
 }
 
 #p1 {
-  left: 650px;
+  left: 720px;
   top: 50px;
   font-size: 50px;
+
+  transform: translateX(-50%);
+  text-align: center;
+  width: 400px;
 }
 
 #p2 {
-  right: 650px;
+  left: 1200px;
   top: 50px;
   font-size: 50px;
+
+  transform: translateX(-50%);
+  text-align: center;
+  width: 400px;
 }
 
 #score1 {
-  left: 853px;
+  left: 880px;
   top: 37px;
   font-size: 50px;
+
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100px;
 }
 
 #score2 {
-  left: 1038px;
+  left: 1080px;
   top: 37px;
   font-size: 50px;
+
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100px;
 }
 
 .changed {
