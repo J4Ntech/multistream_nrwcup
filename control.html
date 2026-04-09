@@ -9,7 +9,6 @@
 
 <h2>Control Panel</h2>
 
-<!-- 🔐 LOGIN -->
 <div id="loginBox">
   <input id="email" placeholder="Email"><br>
   <input id="password" type="password" placeholder="Password"><br>
@@ -44,7 +43,6 @@ const db = firebase.database();
 const auth = firebase.auth();
 
 
-// 🔐 LOGIN
 function login() {
   const email = document.getElementById("email").value;
   const pw = document.getElementById("password").value;
@@ -53,7 +51,6 @@ function login() {
     .catch(err => alert(err.message));
 }
 
-// 🔓 LOGOUT
 function logout() {
   firebase.auth().signOut();
 }
@@ -72,7 +69,6 @@ firebase.auth().onAuthStateChanged(user => {
 });
 
 
-// 🎮 UI
 function loadUI() {
 
   const gameContainer = document.getElementById("games");
@@ -115,7 +111,6 @@ function loadUI() {
 }
 
 
-// 🔄 UPDATE
 function update(gameId) {
   const p1 = document.getElementById(`p1-${gameId}`);
   const p2 = document.getElementById(`p2-${gameId}`);
@@ -131,14 +126,23 @@ function update(gameId) {
 }
 
 
-// 🔄 RESET
 function reset(gameId) {
   const confirmReset = confirm("Willst du den Score wirklich resetten?");
   if (!confirmReset) return;
 
+  const p1 = document.getElementById(`p1-${gameId}`);
+  const p2 = document.getElementById(`p2-${gameId}`);
+  const s1 = document.getElementById(`s1-${gameId}`);
+  const s2 = document.getElementById(`s2-${gameId}`);
+
+  // Eingabefelder im Control Panel sofort sichtbar auf 0 setzen
+  s1.value = 0;
+  s2.value = 0;
+
+  // Spielernamen behalten
   db.ref("games/game" + gameId).set({
-    player1: "",
-    player2: "",
+    player1: p1.value || "",
+    player2: p2.value || "",
     score1: 0,
     score2: 0
   });
