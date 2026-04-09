@@ -7,6 +7,11 @@
 <body class="overlay">
 
 <div id="overlay">
+  <div id="matchInfo">
+    <div id="round">Winners Round 1</div>
+    <div id="phase">Pool A1</div>
+  </div>
+
   <span id="p1">Spieler 1</span>
 
   <span id="score">
@@ -46,23 +51,27 @@ ref.on("value", (snapshot) => {
   const data = snapshot.val();
   if (!data) return;
 
+  const round = document.getElementById("round");
+  const phase = document.getElementById("phase");
   const p1 = document.getElementById("p1");
   const p2 = document.getElementById("p2");
- const score1 = document.getElementById("score1");
-const score2 = document.getElementById("score2");
+  const score1 = document.getElementById("score1");
+  const score2 = document.getElementById("score2");
 
+  round.innerText = data.round || "";
+  phase.innerText = data.phase || "";
   p1.innerText = data.player1 || "";
   p2.innerText = data.player2 || "";
-  
-if (score1.innerText != data.score1) {
-  score1.innerText = data.score1;
-  animateScore(score1);
-}
 
-if (score2.innerText != data.score2) {
-  score2.innerText = data.score2;
-  animateScore(score2);
-}
+  if (score1.innerText != data.score1) {
+    score1.innerText = data.score1;
+    animateScore(score1);
+  }
+
+  if (score2.innerText != data.score2) {
+    score2.innerText = data.score2;
+    animateScore(score2);
+  }
 });
 </script>
 
