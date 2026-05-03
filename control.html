@@ -67,8 +67,8 @@ function loadUI() {
   const titles = [
     "Tru4 Stream Layout",
     "Tarik Stream Layout",
-    "Set 3 (UNTEN LINKS)",
-    "Set 4 (UNTEN RECHTS)"
+    "Set 3 (WIRD MOMENTAN NICHT GENUTZT)",
+    "Set 4 (WIRD MOMENTAN NICHT GENUTZT)"
   ];
 
   gameContainer.innerHTML = "";
@@ -95,7 +95,9 @@ function loadUI() {
       <input id="round-${i}" placeholder="Runde"><br>
       <input id="phase-${i}" placeholder="Phase"><br><br>
 
-      <button onclick="update(${i})">Update Set ${i}</button>
+     <button onclick="update(${i})">
+  ${i === 1 ? "Update Tru4" : i === 2 ? "Update Tarik" : "Update Set " + i}
+</button>
       <button onclick="reset(${i})">Reset Score</button>
     `;
 
