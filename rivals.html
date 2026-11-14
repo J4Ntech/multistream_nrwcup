@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>NRW Cup Fullscreen Scoreboard</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    #overlay {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      background: url("scoreboard_rivals.png")
+            no-repeat top left;
+      background-size: 1920px 1080px;
+      font-family: Arial, sans-serif;
+      color: white;
+      font-weight: bold;
+    }
+
+    #p1, #p2, #score1, #score2,
+    #round, #phase {
+      position: absolute;
+      text-align: center;
+      text-shadow: 2px 2px 4px black;
+    }
+
+    
+
+/* Spieler 1 - linker roter Bereich */
+
+/* Spieler 1 - linker Bereich */
+
+/* Spieler 1 - linker roter Bereich */
+#score1 {
+  left: 470px;
+  top: 66px;
+  width: 35px;
+  font-size: 28px;
+  text-align: center;
+}
+
+#p1 {
+  left: 520px;
+  top: 66px;
+  width: 240px;
+  font-size: 26px;
+  text-align: left;
+}
+
+/* Spieler 2 - rechter blauer Bereich */
+
+#p2 {
+  left: 1160px;
+  top: 66px;
+  width: 240px;
+  font-size: 26px;
+  text-align: right;
+}
+
+#score2 {
+  left: 1415px;
+  top: 66px;
+  width: 35px;
+  font-size: 28px;
+  text-align: center;
+}
+
+
+/* Runde - mittig */
+
+#round {
+  left: 760px;
+  top: 56px;
+  width: 400px;
+  font-size: 24px;
+  text-align: center;
+}
+
+#phase {
+  left: 760px;
+  top: 84px;
+  width: 400px;
+  font-size: 18px;
+  text-align: center;
+}
+  </style>
+</head>
+
+<body>
+  <div id="overlay">
+    <div id="p1">Spieler 1</div>
+    <div id="p2">Spieler 2</div>
+    <div id="score1">0</div>
+    <div id="score2">0</div>
+    <div id="round">Winners Round 1</div>
+    <div id="phase">Pool A1</div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD_vGptJ_ha6Z5Nk2DxjOejCWw75xevq7o",
+      authDomain: "nrw-cup-multistream.firebaseapp.com",
+      databaseURL: "https://nrw-cup-multistream-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "nrw-cup-multistream"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    const gameId = "game4";
+
+    firebase.database().ref("games/" + gameId)
+      .on("value", snapshot => {
+        const data = snapshot.val();
+        if (!data) return;
+
+        document.getElementById("p1").textContent = data.player1 || "";
+        document.getElementById("p2").textContent = data.player2 || "";
+        document.getElementById("score1").textContent = data.score1 ?? 0;
+        document.getElementById("score2").textContent = data.score2 ?? 0;
+        document.getElementById("round").textContent = data.round || "";
+        document.getElementById("phase").textContent = data.phase || "";
+      });
+  </script>
+</body>
+</html>
